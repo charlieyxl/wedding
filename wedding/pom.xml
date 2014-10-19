@@ -10,13 +10,6 @@
   
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    
-    <dependency>
 		<groupId>org.springframework</groupId>
 		<artifactId>spring-core</artifactId>
 		<version>4.1.1.RELEASE</version>
@@ -56,6 +49,31 @@
 		<groupId>com.mchange</groupId>
 		<artifactId>c3p0</artifactId>
 		<version>0.9.5-pre9</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.33</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.1.0</version>
+	</dependency>
+	
+	<dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<version>4.1.1.RELEASE</version>
 	</dependency>
   </dependencies>
   

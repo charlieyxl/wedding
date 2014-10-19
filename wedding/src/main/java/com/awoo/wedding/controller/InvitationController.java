@@ -5,28 +5,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.awoo.wedding.model.Guest;
 import com.awoo.wedding.service.GuestService;
 
 @Controller
-@RequestMapping("/admin/*")
-public class AdminController
+@RequestMapping("/invitation/*")
+public class InvitationController
 {
 	@Autowired
-	private GuestService guestServe;
+	private GuestService guestService;
 	
-	@RequestMapping("hello")
-	public ModelAndView hello()
+	@RequestMapping("1")
+	public ModelAndView getInvitation()
 	{
-//		Guest guest = new Guest();
-//		guest.setUserid(1);
-//		guest.setName("test");
-//		guest.setCompanionNum(2);
-//		
-//		guestServe.saveGuest(guest);
-		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("hello");
+		mav.setViewName("index");
 		return mav;
 	}
 }
