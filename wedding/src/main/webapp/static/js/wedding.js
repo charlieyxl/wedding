@@ -4,7 +4,7 @@ function hello(btn){
 		type: "get",
 		success: function(result) {
 			$("#canvas").html(result);
-			$(".active").attr('class', '');
+			$("li.active").attr('class', '');
 			$("#"+btn.title+"_btn").attr('class', 'active');
 		}
 	});
