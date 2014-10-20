@@ -19,6 +19,7 @@ public class InvitationController
 	{
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("index");
+		mav.addObject("groom", "于晓路");
 		return mav;
 	}
 	
@@ -59,6 +60,19 @@ public class InvitationController
 	{
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("signup");
+		return mav;
+	}
+	
+	@RequestMapping(value="confirm")
+	public ModelAndView getConfirm(String name, int number)
+	{
+		String info_str = "回执已提交";
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("name", name);
+		mav.addObject("number", number);
+		mav.addObject("info_str", info_str);
+		mav.setViewName("confirm");
 		return mav;
 	}
 }

@@ -25,7 +25,7 @@ h3 {
 }
 
 a {
-	color: #000000;
+	color: #000000 !important;
 }
 
 @media ( min-width :768px) {
@@ -142,7 +142,7 @@ a {
 				<div id="invitation" class="col-md-6 col-md-offset-3">
 					<h3 id="date" class="text-center"><span class="glyphicon glyphicon-calendar"></span> 2014年11月22日 </h3>
 					<h3 class="text-center"><span class="glyphicon glyphicon-time"></span> 17:30</h3>
-					<p class="text-center"> 新郎：<span class="name text-primary">于晓路</span>&nbsp;&nbsp; 新娘：<span class="name text-primary">徐晨珏</span></p>
+					<p class="text-center"> 新郎：<span class="name text-primary"><%= request.getAttribute("groom") %></span>&nbsp;&nbsp; 新娘：<span class="name text-primary">徐晨珏</span></p>
 					<p class="text-center">谨于</p>
 					<p id="m1" class="text-center"></p>
 					<script type="text/javascript">
