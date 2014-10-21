@@ -1,0 +1,5 @@
+wedding/target/*
+wedding/home/*
+
+jdbc.properties
+/wedding/
