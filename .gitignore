@@ -1,5 +1,10 @@
+#exclude class files
+.class
+
+#exclude other meaningless .gitignore files
+wedding/**/.gitignore
+
 wedding/target/*
 wedding/home/*
 
 jdbc.properties
-/wedding/
