@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.awoo.wedding.service.GuestService;
+import com.awoo.wedding.util.Constants;
 
 @Controller
 @RequestMapping("/admin/*")
@@ -26,6 +27,7 @@ public class AdminController
 	{
 		logger.info("User {} logged in.", username);
 		httpSession.setAttribute("userid", "1");
+		httpSession.setAttribute(Constants.USER_NAME, username);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("username", username);

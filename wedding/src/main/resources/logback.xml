@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<!-- log would be in your home directory -->
-  		<file>log/wedding/wedding.log</file>
+	<!-- dir would start from your home directory -->
+	<property name="wedding.log.dir" value="log/wedding" />
+	<property name="wedding.log.pattern" value="%d | %-5level [%thread] %c{0}:%L | %X{username} - %msg%n"/>
+	<property name="wedding.log.level" value="INFO" />
+
+	<appender name="webApp" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  		<file>${wedding.log.dir}/wedding.log</file>
   		
   		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 	      	<!-- daily rollover -->
-	      	<fileNamePattern>wedding.%d{yyyy-MM-dd}.log</fileNamePattern>
+	      	<fileNamePattern>${wedding.log.dir}/wedding.%d{yyyy-MM-dd}.log</fileNamePattern>
 	      	<!-- keep 30 days' worth of history -->
 	      	<maxHistory>30</maxHistory>
 	    </rollingPolicy>
   		
   		<encoder>
-      		<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+      		<pattern>${wedding.log.pattern}</pattern>
     	</encoder>
 	</appender>
 
-  	<logger name="com.awoo" level="INFO"/>
+  	<logger name="com.awoo" level="${wedding.log.level}" additivity="false">
+  		<appender-ref ref="webApp" />
+  	</logger>
 
-	<root level="debug">
-    	<appender-ref ref="FILE" />
-  	</root>
+	<root level="DEBUG" />
 </configuration>
