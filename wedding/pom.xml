@@ -46,6 +46,12 @@
 	</dependency>
 	
 	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-orm</artifactId>
+		<version>4.1.1.RELEASE</version>
+	</dependency>
+	
+	<dependency>
 		<groupId>com.mchange</groupId>
 		<artifactId>c3p0</artifactId>
 		<version>0.9.5-pre9</version>
@@ -98,6 +104,12 @@
 		<groupId>org.apache.commons</groupId>
 		<artifactId>commons-lang3</artifactId>
 		<version>3.3.2</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>4.3.6.Final</version>
 	</dependency>
   </dependencies>
   

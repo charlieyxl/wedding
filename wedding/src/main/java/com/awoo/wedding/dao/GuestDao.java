@@ -2,10 +2,10 @@ package com.awoo.wedding.dao;
 
 import java.util.Map;
 
-import com.awoo.wedding.model.Guest;
+import com.awoo.wedding.model.Guests;
 
 public interface GuestDao
 {
-	void saveGuest(Guest guest);
+	void saveGuest(Guests guest);
 	Map<String, Integer> getGuestsForUser(String userName);
 }

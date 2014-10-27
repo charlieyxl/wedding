@@ -2,9 +2,10 @@ package com.awoo.wedding.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.awoo.wedding.dao.GuestDao;
-import com.awoo.wedding.model.Guest;
+import com.awoo.wedding.model.Guests;
 
 @Service
 public class GuestServiceImpl implements GuestService
@@ -12,7 +13,8 @@ public class GuestServiceImpl implements GuestService
 	@Autowired
 	private GuestDao guestDao;
 	
-	public void saveGuest(Guest guest)
+	@Transactional(readOnly=false)
+	public void saveGuest(Guests guest)
 	{
 		guestDao.saveGuest(guest);
 	}

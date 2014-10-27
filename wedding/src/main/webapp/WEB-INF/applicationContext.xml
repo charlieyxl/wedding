@@ -20,10 +20,9 @@
     <!-- 启用spring mvc 注解 -->
     <context:annotation-config />
     <context:property-placeholder location="classpath:jdbc.properties" />
-    
+
     <!-- 配置数据源 -->
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-        destroy-method="close">
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass">
             <value>${jdbc.driverClassName}</value>
         </property>
@@ -50,7 +49,7 @@
         </property>
         <!--最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0 -->
         <property name="maxIdleTime">
-            <value>60</value>
+            <value>300</value>
         </property>
         <!--当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3 -->
         <property name="acquireIncrement">
@@ -61,9 +60,9 @@
         <property name="maxStatements">
             <value>0</value>
         </property>
-        <!--每60秒检查所有连接池中的空闲连接。Default: 0 -->
+        <!--每5分钟检查所有连接池中的空闲连接。Default: 0 -->
         <property name="idleConnectionTestPeriod">
-            <value>60</value>
+            <value>300</value>
         </property>
         <!--定义在从数据库获取新连接失败后重复尝试的次数。Default: 30 -->
         <property name="acquireRetryAttempts">
@@ -80,16 +79,27 @@
             <value>false</value>
         </property>
     </bean>
- 
-    <!-- 配置Jdbc模板 -->
-    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-        <property name="dataSource" ref="dataSource"></property>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.awoo.wedding.model*" ></property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.use_sql_comments">true</prop>
+                <prop key="hibernate.jdbc.batch_size">20</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
     </bean>
- 
+
     <!-- 配置事务管理器 -->
-    <bean id="transactionManager"
-        class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
-        p:dataSource-ref="dataSource" />
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
 	<!-- 设置使用注解的类所在的jar包 -->
     <context:component-scan base-package="com.awoo.wedding.*"/>

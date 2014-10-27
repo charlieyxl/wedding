@@ -2,28 +2,20 @@ package com.awoo.wedding.dao;
 
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.awoo.wedding.model.Guest;
+import com.awoo.wedding.model.Guests;
 
 @Repository
-public class GuestDaoImpl implements GuestDao
+public class GuestDaoImpl extends HibernateBaseDao implements GuestDao
 {
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
-
-	private static final String SAVE_GUEST = "insert into Guests values (?, ?, ?)";
-	
-	public void saveGuest(Guest guest)
+	public void saveGuest(Guests guest)
 	{
-		jdbcTemplate.update(SAVE_GUEST, guest.getUserid(), guest.getName(), guest.getCompanionNum());
+		getHibernateTemplate().saveOrUpdate(guest);
 	}
 
 	public Map<String, Integer> getGuestsForUser(String userName)
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

@@ -9,7 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.awoo.wedding.model.Guest;
+import com.awoo.wedding.model.Guests;
+import com.awoo.wedding.model.compositepk.GuestsPK;
 import com.awoo.wedding.service.GuestService;
 
 @Controller
@@ -78,9 +79,12 @@ public class InvitationController
 		String useridStr = (String) httpSession.getAttribute("userid");
 		int userid = Integer.parseInt(useridStr);
 		
-		Guest guest = new Guest();
-		guest.setUserid(userid);
-		guest.setName(name);
+		GuestsPK key = new GuestsPK();
+		key.setUserid(userid);
+		key.setName(name);
+		
+		Guests guest = new Guests();
+		guest.setGuestPK(key);
 		guest.setCompanionNum(number);
 		guestService.saveGuest(guest);
 		
