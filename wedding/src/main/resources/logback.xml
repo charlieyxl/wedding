@@ -23,6 +23,41 @@
   	<logger name="com.awoo" level="${wedding.log.level}" additivity="false">
   		<appender-ref ref="webApp" />
   	</logger>
+  	
+  	<appender name="database" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  		<file>${wedding.log.dir}/database.log</file>
+  		
+  		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	      	<!-- daily rollover -->
+	      	<fileNamePattern>${wedding.log.dir}/database.%d{yyyy-MM-dd}.log</fileNamePattern>
+	      	<!-- keep 30 days' worth of history -->
+	      	<maxHistory>30</maxHistory>
+	    </rollingPolicy>
+  		
+  		<encoder>
+      		<pattern>${wedding.log.pattern}</pattern>
+    	</encoder>
+	</appender>
+  	
+  	<!-- show parameters for hibernate sql 专为 Hibernate 定制 -->  
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE">
+    	<appender-ref ref="database" />
+    </logger>  
+    <logger name="org.hibernate.type.descriptor.sql.BasicExtractor" level="DEBUG">
+    	<appender-ref ref="database" />
+    </logger>  
+    <logger name="org.hibernate.SQL" level="DEBUG">
+    	<appender-ref ref="database" />
+    </logger>
+    <logger name="org.hibernate.type" level="DEBUG">
+    	<appender-ref ref="database" />
+    </logger>
+    <logger name="org.hibernate.engine.QueryParameters" level="DEBUG">
+    	<appender-ref ref="database" />
+    </logger>  
+    <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG">
+    	<appender-ref ref="database" />
+    </logger>
 
 	<root level="DEBUG" />
 </configuration>
