@@ -14,7 +14,7 @@ public class GuestServiceImpl implements GuestService
 	private GuestDao guestDao;
 	
 	@Transactional(readOnly=false)
-	public void saveGuest(Guests guest)
+	public void saveOrUpdateGuest(Guests guest)
 	{
 		guestDao.saveGuest(guest);
 	}

@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
@@ -23,11 +24,12 @@ public class GeneralFilter implements Filter
 		
 	}
 
-	public void doFilter(ServletRequest servletRequest, ServletResponse response,
+	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain chain) throws IOException, ServletException
 	{
 		String userName = Constants.DEFAULT_USER_NAME;
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
+		HttpServletResponse response = (HttpServletResponse) servletResponse;
 		HttpSession session = request.getSession();
 		
 		if (session != null)
@@ -42,7 +44,21 @@ public class GeneralFilter implements Filter
 		
 		LogUtil.configLogParameters(userName);
 		
-		chain.doFilter(request, response);
+		try
+		{
+			chain.doFilter(request, response);
+		}
+		catch (Throwable e)
+		{
+			if (!response.isCommitted())
+			{
+				response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, Constants.INTERNAL_SERVER_ERROR);
+			}
+		}
+		finally
+		{
+			LogUtil.clearLogParameters();
+		}
 	}
 
 	public void destroy() {}

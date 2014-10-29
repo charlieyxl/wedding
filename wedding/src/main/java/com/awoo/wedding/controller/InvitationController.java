@@ -86,7 +86,7 @@ public class InvitationController
 		Guests guest = new Guests();
 		guest.setGuestPK(key);
 		guest.setCompanionNum(number);
-		guestService.saveGuest(guest);
+		guestService.saveOrUpdateGuest(guest);
 		
 		String info_str = "回执已提交";
 		

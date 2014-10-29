@@ -8,4 +8,9 @@ public final class LogUtil
 	{
 		MDC.put(Constants.USER_NAME, username);
 	}
+	
+	public static void clearLogParameters()
+	{
+		MDC.clear();
+	}
 }

@@ -4,5 +4,5 @@ import com.awoo.wedding.model.Guests;
 
 public interface GuestService
 {
-	void saveGuest(Guests guest);
+	void saveOrUpdateGuest(Guests guest);
 }
