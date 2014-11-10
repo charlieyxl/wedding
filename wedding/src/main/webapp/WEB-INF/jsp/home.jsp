@@ -32,20 +32,21 @@ a {
 	.my-map {
 		margin: 0 auto;
 		width: 768px;
-		height: 200px;
+		height: 300px;
 	}
 	#confirm_info {
 		padding-top: 4%;
 	}
 	#canvas {
 		padding-top: 1.5%;
+		padding-bottom: 1%;
 	}
 	body {
 		font-family: "Microsoft YaHei", "Helvetica Neue", "Sans-Serif";
 	}
 }
 
-@media ( max-width : 768px) {
+@media ( max-width : 767px) {
 	.my-map {
 		margin: 0 auto;
 		width: device-width;
@@ -56,6 +57,7 @@ a {
 	}
 	#canvas {
 		padding-top: 4%;
+		padding-bottom: 2.5%;
 	}
 }
 
@@ -91,8 +93,13 @@ a {
 	margin-top: 0px;
 }
 
-#ido, #ido-xs {
+#ido{
 	width: 100%;
+	padding-bottom: 1.5%;
+}
+#ido-xs {
+	width: 100%;
+	padding-bottom: 4%;
 }
 </style>
 </head>
